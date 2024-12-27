@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NYT Letter Boxed Solver</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>NYT Letter Boxed Solver</h1>
+    <form id="solverForm">
+      <label for="letter_groups">Enter Letter Groups:</label>
+      <input type="text" id="letter_groups" name="letter_groups" placeholder="e.g., ryl pqf aeo bui" required>
+      <button type="submit">Solve</button>
+    </form>
+    <div id="results"></div>
+  </div>
+
+  <script>
+    const form = document.getElementById('solverForm');
+    const resultsDiv = document.getElementById('results');
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const letterGroups = document.getElementById('letter_groups').value;
+
+      resultsDiv.innerHTML = '<p>Loading...</p>';
+
+      try {
+        const response = await fetch('/solve', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams({ letter_groups: letterGroups })
+        });
+        const data = await response.json();
+
+        if (data.error) {
+          resultsDiv.innerHTML = `<p>Error: ${data.error}</p>`;
+        } else {
+          resultsDiv.innerHTML = '<h2>Solutions:</h2><ul>' +
+            data.solutions.map(solution => `<li>${solution.join(' ➡️ ')}</li>`).join('') +
+            '</ul>';
+        }
+      } catch (err) {
+        resultsDiv.innerHTML = `<p>An error occurred: ${err.message}</p>`;
+      }
+    });
+  </script>
+</body>
+</html>
