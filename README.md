@@ -32,3 +32,6 @@ This project allows you to input a set of letters and automatically finds the wo
    ```
    python app.py
    ```
+# Credits
+
+(https://youtu.be/-T9lyyu-Nt4?si=ctuQNpVz4NrtcWne)
