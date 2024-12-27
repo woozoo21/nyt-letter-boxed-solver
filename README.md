@@ -2,7 +2,7 @@
 
 This project allows you to input a set of letters and automatically finds the words that can be formed from them.
 
-![Screenshot 2024-12-26 172921](https://github.com/user-attachments/assets/d60b9df7-154f-4505-a60c-7bfe96cf97f8)
+![image](https://github.com/user-attachments/assets/8c2bf7f5-ac2b-4aff-8cde-08f1ef7656c3)
 
 ## Features
 
